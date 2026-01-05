@@ -61,3 +61,15 @@
 .correctAnswer button:active {
     transform: scale(1.1);
 }
+
+.correct-answer-text {
+    color: #666;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.incorrect {
+    color: #f44336;
+    font-size: 24px;
+    font-weight: bold;
+}

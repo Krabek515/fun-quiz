@@ -11,9 +11,42 @@ const App = () => {
         3: ['У кого больше всего наигранных часов в CS2?', 'crab'],
         4: ['Кто наиграл на Ясуо больше всех?', 'liger']
     }
+
     const [currentQuestion, setCurrentQuestion] = useState(1)
     const [Qnumber, setQnumber] = useState(1)
-    let correctAnswerIsVisible = false;
+    const [showModal, setShowModal] = useState(false)
+    const [isCorrect, setIsCorrect] = useState(false)
+    const [selectedMember, setSelectedMember] = useState('')
+    const [correctMember, setCorrectMember] = useState('')
+    const [correctAnswers, setCorrectAnswers] = useState(0)
+
+    const handleAnswer = (correct, selected, correctAnswer) => {
+        setIsCorrect(correct)
+        setSelectedMember(selected)
+        setCorrectMember(correctAnswer)
+        setShowModal(true)
+
+        if (correct) {
+            setCorrectAnswers(correctAnswers + 1)
+        }
+
+        console.log(`Выбран: ${selected}, Правильный: ${correctAnswer}, Верно?: ${correct}`)
+    }
+
+    const handleNextQuestion = () => {
+        setShowModal(false)
+
+        if (currentQuestion < Object.keys(questionList).length) {
+            setCurrentQuestion(currentQuestion + 1)
+            setQnumber(Qnumber + 1)
+        } else {
+            alert(`Викторина завершена!\nПравильных ответов: ${correctAnswers}/${Object.keys(questionList).length}`)
+            
+            setCurrentQuestion(1)
+            setQnumber(1)
+            setCorrectAnswers(0)
+        }
+    }
 
     return (
         <div>
@@ -28,10 +61,16 @@ const App = () => {
                 Qnumber={Qnumber}
                 setQnumber={setQnumber}
                 questionList={questionList}
+                onAnswer={handleAnswer}
             />
-            <CorrectAnswerModalWindow correctAnswerIsVisible={correctAnswerIsVisible} />    
-        </div >
-
+            <CorrectAnswerModalWindow
+                isVisible={showModal}
+                isCorrect={isCorrect}
+                selectedMember={selectedMember}
+                correctMember={correctMember}
+                onNext={handleNextQuestion}
+            />
+        </div>
     )
 }
 
