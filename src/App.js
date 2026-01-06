@@ -6,10 +6,16 @@ import CorrectAnswerModalWindow from './components/CorrectAnswerModalWindow'
 
 const App = () => {
     const questionList = {
-        1: ['У кого из участников Black Rose первым ником был vincenzo2002?', 'anton'],
-        2: ['Кто первым познакомился с Клериком?', 'pasha'],
-        3: ['У кого больше всего наигранных часов в CS2?', 'crab'],
-        4: ['Кто наиграл на Ясуо больше всех?', 'liger']
+        1: ['Чья фраза: "Тебе дай блять хуй с надписью хлеб и ты его сожрешь"', 'pasha'],
+        2: ['Чья фраза: "Кому отсосать за крайслер?"', 'liger'],
+        3: ['У кого был дом - иглу в одном из выживаний в майнкрафт?', 'crab'],
+        4: ['Чья фраза: "А твои усики соскучились по моему члену"', 'anton'],
+        5: ['Кому удалось сбежать от Краба и выжить', 'liger'],
+        6: ['Кто был первым посетителем зеков в тюрьме в майнкрафт?', 'pasha'],
+        7: ['Чья фраза: "Дрифт хуйня ебаная для долбоёбов"', 'anton'],
+        8: ['Чья фраза: "Заходи на канал кроссворды порешаем"', 'liger'],
+        9: ['Кто инициатор подрыва выборов?', 'anton'],
+        10: ['Чья фраза:"Че ты там гейм лузнулся?"', 'crab'],
     }
 
     const [currentQuestion, setCurrentQuestion] = useState(1)
@@ -41,7 +47,7 @@ const App = () => {
             setQnumber(Qnumber + 1)
         } else {
             alert(`Викторина завершена!\nПравильных ответов: ${correctAnswers}/${Object.keys(questionList).length}`)
-            
+
             setCurrentQuestion(1)
             setQnumber(1)
             setCorrectAnswers(0)
